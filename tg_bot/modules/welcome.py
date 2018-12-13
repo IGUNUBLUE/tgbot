@@ -153,11 +153,11 @@ def new_member(bot: Bot, update: Update):
             except TelegramError:
                 pass
 
-        return "<b>{}:</b>" \
-           "\n#NEW_USER" \
-           "\n<b>User:</b> {}" \
-           "\n<b>User ID:</b> <code>{}</code>".format(html.escape(chat.title),
-                                                        mention_html(new_mem.id, new_mem.first_name), new_mem.id)
+    return "<b>{}:</b>" \
+       "\n#NEW_USER" \
+       "\n<b>User:</b> {}" \
+       "\n<b>User ID:</b> <code>{}</code>".format(html.escape(chat.title),
+                                                  mention_html(new_mem.id, new_mem.first_name), new_mem.id)
 
 
 @run_async
