@@ -522,6 +522,7 @@ __help__ = """
  - /cleanwelcome <on/off>: On new member, try to delete the previous welcome message to avoid spamming the chat.
  - /welcomemute <on/off>: all users that join, get muted.
  - /welcomehelp: view more formatting information for custom welcome/goodbye messages.
+ - /markdownhelp: view more formatting information for custom button in welcome/goodbye messages.
 """.format(WELC_HELP_TXT)
 
 __mod_name__ = "Welcomes/Goodbyes"
