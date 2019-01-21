@@ -80,9 +80,9 @@ def rvghs(bot, update, args: List[int]):
         if val.isdigit():
             val = int(val)
             vghs_year = ((val/1000)*0.184)*365
-            vghs_month = ((val/1000)*0.184)*12
+            vghs_month = ((val/1000)*0.184)*30
             vghs_day = ((val/1000)*0.184)*1
-            answer = "⚠️_Cálculo realizado con el 15% de rentabilidad_.\n*Los vGHS usados para el cálculo son:*`"+str(val)+"`. *El rendimiento estimado es:*\n*- Diario:*`"+str(vghs_day)+"`\n*- Mensual:*`"+str(vghs_month)+"`\n*- Anual: *`"+str(vghs_year)+"`"
+            answer = "⚠️_Cálculo realizado con el 15% de rentabilidad_.\n*Los vGHS usados para el cálculo son:*`"+str(val)+"`. *El rendimiento estimado es:*\n*- Diario:*`"+str(vghs_day)+"`\n*- Mensual(30D):*`"+str(vghs_month)+"`\n*- Anual: *`"+str(vghs_year)+"`"
             message.reply_text(answer,  parse_mode='MARKDOWN')
         else:
             message.reply_text("Por favor ingrese su potencia vGHS. ejemplo:/rvghs 1000")
