@@ -85,10 +85,7 @@ def rvghs(bot, update, args: List[int]):
             answer = "⚠️_Cálculo realizado con el 15% de rentabilidad_.\n*Los vGHS usados para el cálculo son:*`"+str(val)+"`. *El rendimiento estimado es:*\n*- Diario:*`"+str(vghs_day)+"`\n*- Mensual(30D):*`"+str(vghs_month)+"`\n*- Anual: *`"+str(vghs_year)+"`"
             message.reply_text(answer,  parse_mode='MARKDOWN')
         else:
-            if val == ""
-                message.reply_text("Por favor ingrese su potencia vGHS. ejemplo:/rvghs 1000")
-            else:
-                message.reply_text("Por favor ingrese su potencia vGHS. ejemplo:/rvghs 1000")
+            message.reply_text("Por favor ingrese su potencia vGHS. ejemplo:/rvghs 1000")
     else:
         message.reply_text("Response not available for this group.")
 
