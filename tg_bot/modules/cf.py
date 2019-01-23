@@ -1,21 +1,24 @@
 import time
 from typing import Optional
 from datetime import datetime
+from typing import Optional, List
+from cffi.backend_ctypes import xrange
+
 from telegram import Message, Update, Bot, User, replymarkup
 from telegram import MessageEntity
 from telegram.ext import Filters, MessageHandler, run_async
 from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton
+
 from tg_bot import dispatcher
 from tg_bot.modules.disable import DisableAbleCommandHandler, DisableAbleRegexHandler
 from tg_bot.modules.users import get_user_id
-from typing import Optional, List
-# end
-from cffi.backend_ctypes import xrange
+from tg_bot.modules.helper_funcs.chat_status import user_admin
+
 
 def roadmap(bot, update):
     chat_id = update.effective_chat.id
     message = update.effective_message
-    if chat_id == -1001396225602:
+    if chat_id == -1001339342147:
         #format
         date_format = "%m/%d/%Y"
         now = time.strftime("%m/%d/%Y")
@@ -72,22 +75,35 @@ def roadmap(bot, update):
         message.reply_text("Response not available for this group.")
 
 
-def rvghs(bot, update, args: List[int]):
+def rvghs(bot, update, args):
     chat_id = update.effective_chat.id
     message = update.effective_message
-    val = args[0]
-    if chat_id == -1001396225602:
-        if val.isdigit():
-            val = int(val)
-            vghs_year = ((val/1000)*0.184)*365
-            vghs_month = ((val/1000)*0.184)*30
-            vghs_day = ((val/1000)*0.184)*1
-            answer = "⚠️_Cálculo realizado con el 15% de rentabilidad_.\n*Los vGHS usados para el cálculo son:*`"+str(val)+"`. *El rendimiento estimado es:*\n*- Diario:*`"+str(vghs_day)+"`\n*- Mensual(30D):*`"+str(vghs_month)+"`\n*- Anual: *`"+str(vghs_year)+"`"
-            message.reply_text(answer,  parse_mode='MARKDOWN')
+    msg1 = "Por favor ingresar tus *vGHS* o un número entre `0` y `20000000`. ejemplo: `10000`"
+    if chat_id == -1001339342147:
+        if len(args) >= 1:
+            try:
+                val = int(args[0])
+                if int(val) <= 20000000 and int(val) >= 0:
+                    vghs_day = (val/1000)*0.184
+                    vghs_month = ((val/1000)*0.184)*30
+                    vghs_year = ((val/1000)*0.184)*365
+                    answer = "_Cálculo realizado con el stacking rate full(15%)._ \n" \
+                                "📌 *DIARIO*\n" \
+                                "*   >>* `"+str(val)+"` / 1000 x 0.184 = `"+str(round(vghs_day, 2))+"` USD \n" \
+                                "📌 *MENSUAL*\n" \
+                                "*   >>* `"+str(val)+"` / 1000 x 0.184 x 30 = `"+str(round(vghs_month, 2))+"` USD \n" \
+                                "📌 *ANUAL*\n" \
+                                "*   >>* `"+str(val)+"` / 1000 x 0.184 x 365 = `"+str(round(vghs_year, 2))+"` USD \n"
+                    message.reply_text(answer,  parse_mode='MARKDOWN')
+                else:
+                    message.reply_text(msg1, parse_mode='MARKDOWN')
+            except:
+                message.reply_text("ERROR", parse_mode='MARKDOWN')
         else:
-            message.reply_text("Por favor ingrese su potencia vGHS. ejemplo:/rvghs 1000")
+            message.reply_text(msg1, parse_mode='MARKDOWN')
     else:
         message.reply_text("Response not available for this group.")
+
 
 __help__ = """
  - /roadmap: Show roadmap of CFPAY.
