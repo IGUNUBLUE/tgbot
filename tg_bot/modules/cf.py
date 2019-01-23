@@ -18,7 +18,7 @@ from tg_bot.modules.helper_funcs.chat_status import user_admin
 def roadmap(bot, update):
     chat_id = update.effective_chat.id
     message = update.effective_message
-    if chat_id == -1001339342147:
+    if chat_id == -1001396225602:
         #format
         date_format = "%m/%d/%Y"
         now = time.strftime("%m/%d/%Y")
@@ -79,7 +79,7 @@ def rvghs(bot, update, args):
     chat_id = update.effective_chat.id
     message = update.effective_message
     msg1 = "Por favor ingresar tus *vGHS* o un número entre `0` y `20000000`. ejemplo: `10000`"
-    if chat_id == -1001339342147:
+    if chat_id == -1001396225602:
         if len(args) >= 1:
             try:
                 val = int(args[0])
