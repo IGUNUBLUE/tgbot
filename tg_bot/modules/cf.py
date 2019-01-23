@@ -89,16 +89,16 @@ def rvghs(bot, update, args):
                     vghs_year = ((val/1000)*0.184)*365
                     answer = "_Cálculo realizado con el stacking rate full(15%)._ \n" \
                                 "📌 *DIARIO*\n" \
-                                "*   >>* `"+str(val)+"` / 1000 x 0.184 = `"+str(round(vghs_day, 2))+"` USD \n" \
+                                "`"+str(val)+"` / 1000 x 0.184 = `"+str(round(vghs_day, 2))+"`USD \n" \
                                 "📌 *MENSUAL*\n" \
-                                "*   >>* `"+str(val)+"` / 1000 x 0.184 x 30 = `"+str(round(vghs_month, 2))+"` USD \n" \
+                                "`"+str(val)+"` / 1000 x 0.184 x 30 = `"+str(round(vghs_month, 2))+"`USD \n" \
                                 "📌 *ANUAL*\n" \
-                                "*   >>* `"+str(val)+"` / 1000 x 0.184 x 365 = `"+str(round(vghs_year, 2))+"` USD \n"
+                                "`"+str(val)+"` / 1000 x 0.184 x 365 = `"+str(round(vghs_year, 2))+"`USD \n"
                     message.reply_text(answer,  parse_mode='MARKDOWN')
                 else:
                     message.reply_text(msg1, parse_mode='MARKDOWN')
             except:
-                message.reply_text("ERROR", parse_mode='MARKDOWN')
+                message.reply_text(msg1, parse_mode='MARKDOWN')
         else:
             message.reply_text(msg1, parse_mode='MARKDOWN')
     else:
