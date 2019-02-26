@@ -273,6 +273,24 @@ def build_lock_message(chat_id):
 
 @run_async
 @user_admin
+def whitelist(bot: Bot, update: Update):
+    msg = update.effective_message
+    chat = update.effective_chat
+    
+    msg.reply_text("Not available")
+
+
+@run_async
+@user_admin
+def rmwhitelist(bot: Bot, update: Update):
+    msg = update.effective_message
+    chat = update.effective_chat
+    
+    msg.reply_text("Not available")
+
+
+@run_async
+@user_admin
 def list_locks(bot: Bot, update: Update):
     chat = update.effective_chat  # type: Optional[Chat]
 
@@ -296,6 +314,8 @@ __help__ = """
  - /lock <type>: lock items of a certain type (not available in private)
  - /unlock <type>: unlock items of a certain type (not available in private)
  - /locks: the current list of locks in this chat.
+ - /whitelist <url>: Add this url to the whitelist - it won't get deleted on url locking. Can be used to add multiple links. If no args are given, returns current list.
+ - /rmwhitelist <url>: Remove this url from the whitelist - url locking will take effect on it again. Can be used to remove multiple urls.
 
 Locks can be used to restrict a group's users.
 eg:
@@ -310,11 +330,15 @@ LOCKTYPES_HANDLER = DisableAbleCommandHandler("locktypes", locktypes)
 LOCK_HANDLER = CommandHandler("lock", lock, pass_args=True, filters=Filters.group)
 UNLOCK_HANDLER = CommandHandler("unlock", unlock, pass_args=True, filters=Filters.group)
 LOCKED_HANDLER = CommandHandler("locks", list_locks, filters=Filters.group)
+WHITELIST_HANDLER = CommandHandler("whitelist", whitelist)
+RMWHITELIST_HANDLER = CommandHandler("rmwhitelist", rmwhitelist)
 
 dispatcher.add_handler(LOCK_HANDLER)
 dispatcher.add_handler(UNLOCK_HANDLER)
 dispatcher.add_handler(LOCKTYPES_HANDLER)
 dispatcher.add_handler(LOCKED_HANDLER)
+dispatcher.add_handler(WHITELIST_HANDLER)
+dispatcher.add_handler(RMWHITELIST_HANDLER)
 
 dispatcher.add_handler(MessageHandler(Filters.all & Filters.group, del_lockables), PERM_GROUP)
 dispatcher.add_handler(MessageHandler(Filters.all & Filters.group, rest_handler), REST_GROUP)
