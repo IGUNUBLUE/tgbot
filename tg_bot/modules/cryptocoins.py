@@ -29,7 +29,7 @@ __mod_name__ = "Cryptocoins"
 
 __help__ = """
 *Admin only:*
- - /setlang <lang>
+ - /p: Price Bitcoin.
 """
 PRICE_HANDLER = CommandHandler("p", price)
 
