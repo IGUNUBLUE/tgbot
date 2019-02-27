@@ -131,7 +131,7 @@ def remove_url(bot, update, args):
 
 def rss_update(bot, job):
     user_data = sql.get_all()
-
+    channelid = -1001402529233
     # this loop checks for every row in the DB
     for row in user_data:
         row_id = row.id
@@ -166,7 +166,7 @@ def rss_update(bot, job):
                 final_message = "<b>{}</b>\n\n{}".format(html.escape(title), html.escape(link))
 
                 if len(final_message) <= constants.MAX_MESSAGE_LENGTH:
-                    bot.send_message(chat_id=tg_chat_id, text=final_message, parse_mode=ParseMode.HTML)
+                    bot.send_message(chat_id=channelid, text=final_message, parse_mode=ParseMode.HTML)
                 else:
                     bot.send_message(chat_id=tg_chat_id, text="<b>Warning:</b> The message is too long to be sent",
                                      parse_mode=ParseMode.HTML)
@@ -175,7 +175,7 @@ def rss_update(bot, job):
                 final_message = "<b>{}</b>\n\n{}".format(html.escape(title), html.escape(link))
 
                 if len(final_message) <= constants.MAX_MESSAGE_LENGTH:
-                    bot.send_message(chat_id=tg_chat_id, text=final_message, parse_mode=ParseMode.HTML)
+                    bot.send_message(chat_id=channelid, text=final_message, parse_mode=ParseMode.HTML)
                 else:
                     bot.send_message(chat_id=tg_chat_id, text="<b>Warning:</b> The message is too long to be sent",
                                      parse_mode=ParseMode.HTML)
