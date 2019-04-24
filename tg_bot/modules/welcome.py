@@ -73,7 +73,7 @@ def send(update, message, keyboard, backup_message):
                                                                       "custom message. Please update."),
                                                       parse_mode=ParseMode.MARKDOWN)
             LOGGER.exception()
-
+            
     return msg
 
 
